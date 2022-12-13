@@ -6,8 +6,8 @@ namespace SauceDemoTesting.Tests
 {
     public class Tests
     {
-        LoginPage _loginPage;
-        InventoryPage _inventoryPage;
+        private LoginPage _loginPage;
+        private InventoryPage _inventoryPage;
 
         [SetUp]
         public void BeforeScenario()
