@@ -30,7 +30,7 @@ namespace SauceDemoTesting.Tests
         }
 
         [Test]
-        public void TC06_AddThreeProductsInCart_ShouldDisplayedThreeProducts()
+        public void TC01_AddThreeProductsInCart_ShouldDisplayedThreeProducts()
         {
             _loginPage.Login("standard_user", "secret_sauce");
             _inventoryPage.SelectOption("Price (low to high)");
@@ -42,7 +42,7 @@ namespace SauceDemoTesting.Tests
         }
 
         [Test]
-        public void TC07_AddTwoProductsDeleteThemAndReturnToTheHomePage_ShouldCartBeEmpty()
+        public void TC02_AddTwoProductsDeleteThemAndReturnToTheHomePage_ShouldCartBeEmpty()
         {
             _loginPage.Login("standard_user", "secret_sauce");
             _inventoryPage.Onesie.Click();
