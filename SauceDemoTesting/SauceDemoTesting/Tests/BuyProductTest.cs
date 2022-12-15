@@ -1,10 +1,5 @@
 ﻿using SauceDemoTesting.Driver;
 using SauceDemoTesting.Page;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SauceDemoTesting.Tests
 {
@@ -12,7 +7,7 @@ namespace SauceDemoTesting.Tests
     {
         private LoginPage _loginPage;
         private InventoryPage _inventoryPage;
-        private CartPage _cartPage; 
+        private CartPage _cartPage;
 
         [SetUp]
         public void BeforeScenario()
@@ -20,7 +15,7 @@ namespace SauceDemoTesting.Tests
             WebDrivers.Initialize();
             _loginPage = new LoginPage();
             _inventoryPage = new InventoryPage();
-            _cartPage= new CartPage();
+            _cartPage = new CartPage();
         }
 
         [TearDown]
@@ -51,7 +46,7 @@ namespace SauceDemoTesting.Tests
             _cartPage.RemoveOnesie.Click();
             _cartPage.RemoveBoltTShirt.Click();
             _cartPage.ContinueShoppingButton.Click();
-            
+
 
             Assert.That(_inventoryPage.CartWithoutProduct.Displayed);
         }
