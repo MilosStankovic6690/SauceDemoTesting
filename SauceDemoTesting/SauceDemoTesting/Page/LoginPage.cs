@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SauceDemoTesting.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SauceDemoTesting.Page
 {
@@ -18,6 +13,7 @@ namespace SauceDemoTesting.Page
         public IWebElement ErrorMessage => driver.FindElement(By.CssSelector("div[class=\"error-message-container error\"]"));
         public string ErrorText = "Epic sadface: Username and password do not match any user in this service";
         public string ErrorTextWithNoData = "Epic sadface: Username is required";
+
         public void Login(string name, string password)
         {
             UserName.SendKeys(name);

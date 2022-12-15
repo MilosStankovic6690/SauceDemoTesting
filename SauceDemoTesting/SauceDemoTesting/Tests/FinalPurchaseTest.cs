@@ -3,13 +3,14 @@ using SauceDemoTesting.Page;
 
 namespace SauceDemoTesting.Tests
 {
-    public class TotalPriceCheckTest
+    public class FinalPurchaseTest
     {
         private LoginPage _loginPage;
         private InventoryPage _inventoryPage;
         private CartPage _cartPage;
         private ConfirmationPage _confirmationPage;
         private CheckoutPage _checkoutPage;
+        private FinishedPurchasePage _finishedPurchasePage;
 
         [SetUp]
         public void BeforeScenario()
@@ -20,6 +21,7 @@ namespace SauceDemoTesting.Tests
             _cartPage = new CartPage();
             _confirmationPage = new ConfirmationPage();
             _checkoutPage = new CheckoutPage();
+            _finishedPurchasePage = new FinishedPurchasePage();
         }
 
         [TearDown]
@@ -28,8 +30,10 @@ namespace SauceDemoTesting.Tests
             WebDrivers.Shutdown();
         }
 
+        public string OrderMessage = "THANK YOU FOR YOUR ORDER";
+
         [Test]
-        public void TC01_CheckTotalItemPriceOfTheOrderedProducts_ShouldBePriceDisplayed()
+        public void TC01_AddThreeProductsAndCompleteThePurchase_ThePurchaseShouldBeSuccessful()
         {
             _loginPage.Login("standard_user", "secret_sauce");
             _inventoryPage.Onesie.Click();
@@ -41,25 +45,9 @@ namespace SauceDemoTesting.Tests
             _confirmationPage.LastName.SendKeys("Stankovic");
             _confirmationPage.ZipCode.SendKeys("11000");
             _confirmationPage.ContinueButton.Submit();
+            _checkoutPage.FinishButton.Click();
 
-            Assert.That(_checkoutPage.ItemTotal.Displayed);
-        }
-
-        [Test]
-        public void TC02_CheckTotalPriceOfTheOrderedProducts_ShouldBePriceDisplayed()
-        {
-            _loginPage.Login("standard_user", "secret_sauce");
-            _inventoryPage.Onesie.Click();
-            _inventoryPage.BikeLight.Click();
-            _inventoryPage.BoltTShirt.Click();
-            _inventoryPage.CartWithProduct.Click();
-            _cartPage.CheckoutButton.Click();
-            _confirmationPage.FirstName.SendKeys("Milos");
-            _confirmationPage.LastName.SendKeys("Stankovic");
-            _confirmationPage.ZipCode.SendKeys("11000");
-            _confirmationPage.ContinueButton.Submit();
-
-            Assert.That(_checkoutPage.TotalPrice.Displayed);
+            Assert.That(OrderMessage, Is.EqualTo(_finishedPurchasePage.OrderFinished.Text));
         }
     }
 }

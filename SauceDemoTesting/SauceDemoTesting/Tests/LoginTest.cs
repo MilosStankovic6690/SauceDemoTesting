@@ -1,6 +1,5 @@
 using SauceDemoTesting.Driver;
 using SauceDemoTesting.Page;
-using OpenQA.Selenium;
 
 namespace SauceDemoTesting.Tests
 {
